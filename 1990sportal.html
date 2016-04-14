@@ -176,8 +176,10 @@
 
         ];
         var type = getParameterByName("type");
+        var defined = false;
         for (var i = 0; i < topics.length; i++) {
             if (topics[i] === type) {
+                defined = true;
                 $("#title").text(titles[i]);
                 $("#content").html($("#content").html() + paragraphs[i]);
                 $("#image").attr("src", images[i]).attr("width", "400");
@@ -186,6 +188,9 @@
                     $("<li>").html(facts[i][j]).appendTo("ul");
                 }
             }
+        }
+        if(!defined){
+            history.back()
         }
     </script>
     <footer>Created by Gabriel Tardy. I was quite busy. | 2016</footer>
