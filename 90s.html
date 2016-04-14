@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>1990s Project</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+  <header>
+    <h1>The 1990s</h1>
+    <h4>A Gabriel Tardy Writeup</h4>
+    </header>
+    <content>
+      <h3>Timeline</h3>
+      <ul id="timeline"></ul>
+    </content>
+    <script>
+      var topics = [
+        "gulfwar",
+        "humangenome",
+        "hubble",
+        "coldwarend",
+        "lariots",
+        "hurricaneandrew",
+        "unabomber",
+        "ojsimpson",
+        "oklahomacitybombing",
+        "atlantaolympics",
+        "fdrmemorialdedication",
+        "monicalewinsky",
+        "y2k",
+        "columbine",
+        "sr71blackbird"
+      ];
+      var titles = [
+        "The Gulf War",
+        "Human Genome Project",
+        "The Hubble Space Telescope",
+        "Cold War Ends",
+        "LA Riots",
+        "Hurricane Andrew",
+        "The Unabomber",
+        "OJ Simpson Trial",
+        "Oklahoma City Bombing",
+        "Atlanta Olympics",
+        "FDR Memorial Dedicated",
+        "Monica Lewinsky",
+        "Y2K",
+        "Columbine Massacre",
+        "SR 71 Blackbird's Last Flight"
+      ];
+      for(var i = 0; i < topics.length; i++){
+        $("<li>").html("<a href='1990sportal.html?type=" + topics[i] + "'>" + titles[i] + "</a>").appendTo("#timeline");
+      }
+    </script>
+  </body>
+</html>

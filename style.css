@@ -1,0 +1,50 @@
+/** css */
+* {
+    font-family: "HelveticaNeue";
+}
+
+#image {
+    float: right;
+}
+
+img:not(#image) {
+    width: 300px;
+}
+header{
+    background: rgb(91, 173, 217);
+    color: rgb(216, 225, 232);
+    padding: 1em;
+    margin: -8px;
+    border-bottom: 10px solid rgb(255, 153, 0);
+}
+body{
+    background: rgb(242, 242, 242);
+}
+a{
+    color: blue !important;
+    text-decoration: none !important;
+}
+#ReadMe{
+    position: fixed;
+    top: 500px;
+    left: 0;
+    padding: 0.5em;
+    width: 100px;
+    text-align: center;
+    background: rgba(255, 206, 82, 0.7);
+    border: 3px solid rgb(0, 162, 255);
+    border-left: none;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+h1{
+    color: rgb(1, 21, 71);
+}
+footer{
+  background: black;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

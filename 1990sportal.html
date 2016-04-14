@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>1990s Portal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+    <h1>1990s Portal</h1>
+    <h4>Gabriel's History of the 1990s</h4>
+    </header>
+    <h2 id="title"></h2>
+    <div id="ReadMe">
+        <a href="javascript:void(0)" id="wikipedia" target="_blank">Read about me on Wikipedia...</a>
+    </div>
+    <hr>
+    <div id="content">
+        <img id="image">
+        <br>
+    </div>
+    <h2>Facts</h2>
+    <ul></ul>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        var topics = [
+            "gulfwar",
+            "humangenome",
+            "hubble",
+            "coldwarend",
+            "lariots",
+            "hurricaneandrew",
+            "unabomber",
+            "ojsimpson",
+            "oklahomacitybombing",
+            "atlantaolympics",
+            "fdrmemorialdedication",
+            "monicalewinsky",
+            "y2k",
+            "columbine",
+            "sr71blackbird"
+        ];
+        var titles = [
+            "The Gulf War",
+            "Human Genome Project",
+            "The Hubble Space Telescope",
+            "Cold War Ends",
+            "LA Riots",
+            "Hurricane Andrew",
+            "The Unabomber",
+            "OJ Simpson Trial",
+            "Oklahoma City Bombing",
+            "Atlanta Olympics",
+            "FDR Memorial Dedicated",
+            "Monica Lewinsky",
+            "Y2K",
+            "Columbine Massacre",
+            "SR 71 Blackbird's Last Flight"
+        ];
+        var paragraphs = [
+            "The <strong>Gulf War</strong>, also known as the Persian Gulf War, First Gulf War, Gulf War I, Kuwait War, First Iraq War, or Iraq War, was the buildup to Operation Desert Storm. Its main mission was to place troops and defense in Saudi Arabia. But it also was a war waged with 34 other nations against Ba'athist Iraq to combat said country's invasion of Kuwait.",
+            "The <strong>Human Genome Project</strong> was a project created to chart the human genome. The organizations involved used DNA from test subjects to painstakingly grab every single A, C, G, or T. Check out this simulation of the randomness of genes! <iframe seamless width='600' height='200' src=\"https://www.khanacademy.org/computer-programming/genome/4357167289/embedded?editor=no&height=200&width=600&buttons=no\"></iframe>",
+            "The <strong>Hubble Space Telescope</strong> is a telescope that was launched into space in 1990. It takes pictures of visible light and sends the pictures back to earth for analyzing. Its conception dates back to 1962 when the US National Academy of Sciences recommended the creation of a space telescope to see past our earth. It still is in space today, still taking pictures!",
+            "The <strong>Cold War</strong> ended in the 1990s with the fall of the USSR. The war had continued since the 1940s-50s with the Berlin Blockade and the Chinese Civil War, then continuing with the race to space and the Cuban Missile Crisis, and finally ending here in 1991.",
+            "The <strong>Los Angeles Riots</strong> began in 1992 when Rodney King led police on a high-speed car chase. (He later admitted to being DUI and not wanting to be caught.) When he was finally caught, the surrounding police officers beat him many times. This was all caught on a camcorder and was given to a prosecutor in the related court case. The officers were acquitted, which lead to the massive rioting in the streets.",
+            "<strong>Hurricane Andrew</strong>, in its time, was the biggest hurricane in US history. It was a Category 5 hurricane which swept through Florida. It destroyed over 125,000 houses, and cost the victims over 26 billion dollars.",
+            "The <strong>Unabomber</strong>, aka <strong>Ted Kaczynski</strong> was a graduate from Harvard, a math teacher, and a bomber. He bombed <a href='https://en.wikipedia.org/wiki/Ted_Kaczynski#List_of_bombings'>26 people</a> during his bombing spree. He used pipe bombs to accomplish most of his crimes, and planted fake evidence to keep police from finding him.",
+            "The <strong>OJ Simpson Trial</strong> stemmed from two murders (of Nicole Brown Simpson and Ronald Goldman). He was accused of the crime, but failed to turn himself in, taking police on a slow-speed chase up Interstate 405. The trial that ensued was long, drawn-out, and totally covered by the media, which is one of its many claims to fame. The photo above is of Simpson famously putting on the bloody glove from the crime scene, which didn't fit. The trial finally ended with Simpson being found not guilty.",
+            "The <strong>Oklahoma City Bombing</strong> was a terrorist attack on Oklahoma City that killed 168 people. It was carried out by Timothy McVeigh and Terry Nichols. The blast destroyed/damaged 324 buildings, destroyed/burned 86 cars, and shattered windows in 258 additional buildings.",
+            "The <strong>1996 Atlanta Olympics</strong> were the summer games of 1996. There were normal olympic events, but one not-so-normal: the <strong>Centennial Park Bombing</strong>, which killed one and injured 111. The attack was later pinned on Eric Robert Rudolph, after he bombed two other places in Atlanta.",
+            "The <strong>FDR Memorial</strong> is a memorial in Washington, DC. It was dedicated in 1997 by Bill Clinton. Its four rooms depict FDR's relationship with the people, and events from his time.",
+            "The <strong>Monica Lewinsky Scandal</strong> was a scandal involving an affair between Bill Clinton and Monica Lewinsky (even though Clinton was married to <span title='</3'>Hilary Clinton</span>). In his trial for impeachment regarding this scandal, he is famously known to say, \"It depends on what the meaning of the word 'is' is,\" regarding his previous statement: \"there is not a sexual relationship, an improper sexual relationship or any other kind of improper relationship.\"",
+            "<strong>Y2K</strong> stands for the Year 2000 Software Problem. The problem arises based on the fact that most computers at that time stored dates in MM/DD/YY format, so that when it rolls over from 1999 to 2000, instead of the 19- and 20- prefixes, only the 19- one is coded in. The date would go from 1999 to 1900. The fear stemmed from the possiblity of deleted birth records as the people \"would not have been born yet\", bank records, and other important documents.",
+            "The <strong>Columbine Massacre</strong> was a school shooting in Columbine (unincorporated), Colorado. The two shooters were Eric Harris and Dylan Klebold, two teenagers at the school. Their motives are unknown, but it could have stemmed from the violent video games they played (in which Harris created a mod that is rumored to have a mockup of Columbine), the possibility of being part of a gothic cult, or their outcast status socially.",
+            "The <strong>SR 71 Blackbird</strong> is a plane that currently holds the world record for fastest air-breathing manned aircraft, at 2,200 miles per hour (in 1976). Its last flight was in 1999."
+        ];
+        var images = [
+            "http://intpolicydigest.org/wp-content/uploads/2015/04/1502669942924.jpg",
+            null,
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/HST-SM4.jpeg/600px-HST-SM4.jpeg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Christian_communism_logo.svg/2000px-Christian_communism_logo.svg.png',
+            "https://latimesphoto.files.wordpress.com/2012/04/burning-car.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/4/44/Andrew_23_aug_1992_1231Z.jpg",
+            "http://assets.nydailynews.com/polopoly_fs/1.15089.1313670799!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/gal-unibomber-mugshot-jpg.jpg",
+            "https://i.warosu.org/data/ck/img/0044/56/1367891922354.jpg",
+            "http://media.cmgdigital.com/shared/img/photos/2015/04/17/41/06/Oklahoma_City_Bombing_20th12.JPG",
+            "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/1996_Summer_Olympics_logo.svg/581px-1996_Summer_Olympics_logo.svg.png",
+            "http://kbtours.kirksvilleautoworks.com/wp-content/uploads/2011/01/loren-1511.jpg",
+            "http://a1.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTE1ODA0OTcyMDYyMTgwODc3.jpg",
+            "https://i.ytimg.com/vi/Q85jerrwBc4/maxresdefault.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/d/de/Columbine_Shooting_Security_Camera.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/9/97/Lockheed_SR-71_Blackbird.jpg"
+        ];
+        var hrefs = [
+            "https://en.wikipedia.org/wiki/Gulf_War",
+            "https://en.wikipedia.org/wiki/Human_Genome_Project",
+            "https://en.wikipedia.org/wiki/Hubble_Space_Telescope",
+            "https://en.wikipedia.org/wiki/Cold_War",
+            "https://en.wikipedia.org/wiki/1992_Los_Angeles_riots",
+            "https://en.wikipedia.org/wiki/Hurricane_Andrew",
+            "https://en.wikipedia.org/wiki/Ted_Kaczynski",
+            "https://en.wikipedia.org/wiki/O._J._Simpson",
+            "https://en.wikipedia.org/wiki/Oklahoma_City_bombing",
+            "https://en.wikipedia.org/wiki/1996_Summer_Olympics",
+            "https://en.wikipedia.org/wiki/Franklin_Delano_Roosevelt_Memorial",
+            "https://en.wikipedia.org/wiki/Monica_Lewinsky",
+            "https://en.wikipedia.org/wiki/Year_2000_problem",
+            "https://en.wikipedia.org/wiki/Columbine_High_School_massacre",
+            "https://en.wikipedia.org/wiki/Lockheed_SR-71_Blackbird"
+        ];
+        var facts = [
+            [
+                "Only 146 Americans died in the war, 70 of them being accidents or friendly fire.",
+                "After the war, many Americans got \"<a href='https://en.wikipedia.org/wiki/Gulf_War_syndrome'>Gulf War Syndrome</a>\"",
+                "The coalition who opposed Iraq was composed of: <ul><li>United States<li><li>Kuwait</li><li>The United Kingdom</li><li>Saudi Arabia</li><li>France</li><li>Italy</li><li>Canada</li><li>and more...</li></ul>"
+            ],
+            [
+                "A stands for Adenine.",
+                "C stands for Cytosine.",
+                "G stands for Guanine.",
+                "T stands for Thymine."
+            ],
+            [
+                "Many pictures are taken using this floating observatory. Here are a few:",
+                "<img src=\"https://upload.wikimedia.org/wikipedia/commons/0/0c/Hubble's_Wide_View_of_'Mystic_Mountain'_in_Infrared.jpg\">",
+                "<img src='https://i.ytimg.com/vi/loXDVGi_lK0/maxresdefault.jpg'>",
+                "<img src='http://cdn.spacetelescope.org/archives/images/large/heic1007a.jpg'>"
+            ],
+            null, [
+                "Property damage summed to about $1,000,000,000.",
+                "55 people were killed, and 2,000 were injured."
+            ],
+            [
+                "Roughly 175,000 people were made homeless by this hurricane.",
+                "In US history, it is the fourth-spendiest hurricane, to Hurricane Katrina, Sandy, and Ike, respectively."
+            ],
+            [
+                'Ted Kaczynski had an IQ of 167.',
+                "He left his teaching job at the University of California, Berkeley, at age 25."
+            ],
+            [
+                "The trial lasted an entire year before its ending.",
+                "Simpson was later arrested for burglary in 2001, and he will probably be in jail until 2017 for other unrelated felonies."
+            ],
+            [
+                "The bombing cost people $652 million in the aftermath."
+            ],
+            [
+                "The USA won 44 gold medals at the olympics."
+            ],
+            [
+                "In our Washington DC trip, we stopped by here on a very rainy day. We stopped by here immediately before going to the MLKJr memorial."
+            ],
+            null, [
+                "Check out this cool <a href='y2k.html'>activity on the Y2K disaster</a>. ",
+                "Check out this <a href='https://www.youtube.com/watch?v=ddzbxJasID4&nohtml5=False'>video about Y2K</a>!"
+            ],
+            [
+                "12 people were killed.",
+                "21 were injured."
+            ],
+            [
+                "The Blackbird was a main exhibit in the Udvar-Hazi Air and Space Museum. It was very hard to <em>not</em> see it."
+            ]
+
+
+        ];
+        var type = getParameterByName("type");
+        for (var i = 0; i < topics.length; i++) {
+            if (topics[i] === type) {
+                $("#title").text(titles[i]);
+                $("#content").html($("#content").html() + paragraphs[i]);
+                $("#image").attr("src", images[i]).attr("width", "400");
+                $("#wikipedia").attr("href", hrefs[i]);
+                for (var j = 0; j < facts[i].length; j++) {
+                    $("<li>").html(facts[i][j]).appendTo("ul");
+                }
+            }
+        }
+    </script>
+    <footer>Created by Gabriel Tardy in a single night. Man, I had no time to do anything else... | 2016</footer>
+</body>
+
+</html>
