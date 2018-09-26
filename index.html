@@ -47,20 +47,20 @@
         <br>
         <p id="paragraph">this page is in beta, stop looking at it if it annoys you<br><br>voilà la page d'acceuil / here is the home page</p>
         <p id="paragraph2">this div is centered therefore you should hire me</p>
-        <p id="trace">home</p>
+        <p id="trace">this is the default trace which likely means you have javascript disabled which is very sad</p>
       </div>
       <script type="text/javascript">
-        var trace = ["home"];
-        var m = location.href.split('/');
-        var isaddress = false;
-        for(var i = 0; i < m.length; i++){
-          if(m[i] == 'gabrieltardy.github.io') isaddress = true;
-
-          if(!isaddress && m[i] == "") m.splice(i, 1);
+        function getTrace(url){
+          var t = ["home"];
+          var m = (url || location.href).split('/');
+          var q = false;
+          for(var i = 0; i < m.length; i++){
+            if(q && m[i] != "") t.push(m[i]);
+            if(m[i] == 'gabrieltardy.github.io') q = true;
+          }
+          return t.join(' / ');
         }
-
-        console.log(m);
-        console.log(trace.concat(m))
+        document.getElementById('trace').textContent = getTrace();
       </script>
   </body>
 </html>
