@@ -30,19 +30,67 @@
         font-size: 3em;
         padding-bottom: 0.5em;
       }
-      #nav a, #nav{
+      a{
         color: white;
+      }
+      #trace{
+        padding-top: 3em;
+        font-size: 0.6em;
+      }
+      .warning{
+        font-size: 0.6em;
+      }
+      hr{
+        border: 1px solid white;
+        width: 50%;
+      }
+      #programs{
+        overflow-y: auto;
+        max-height: 10em;
       }
     </style>
   </head>
   <body>
       <div id="container">
         <header id="header">gabriel's stuff</header>
-        <nav id="nav"><a href="./ti84">ti-84 and ti-84 ce</a> • <a href="./p">proofs of concepts</a> • <a href="./d">projects and demos</a> • <a href="./i?sort=latest">infrequent musings</a>
+        <nav id="nav"><a href="../ti84">ti-84 and ti-84 ce</a> • <a href="../p">proofs of concepts</a> • <a href="../d">projects and demos</a> • <a href="../i?sort=latest">infrequent musings</a>
         </nav>
         <br>
-        <p id="paragraph">voilà la page d'acceuil / here is the home page</p>
-        <p id="paragraph2">this div is centered therefore you should hire me</p>
+        <p id="paragraph">this is a collection of ti-84 and ti-84 ce programs i have made over time including brief documentation and warnings for each when applicable. without further ado:</p>
+        <div id="programs">
+          <div>
+            <hr>
+            <div class="programtitle"><strong>REFANG.8XP 1.1.0</strong></div>
+            <div class="programdescription">This program finds the reference angle given an initial angle for any angle in radians or degrees. <span class="warning">(Warning: It switches your calculator to radians automatically for ease of calculation and a less intrusive program size.)</span> <br> Written in TI-BASIC.
+            </div>
+            <div class="programdl">
+              <a href="./ce/REFANG.8xp">TI84+CE/TI84+CSE</a> • TI84/TI84+ (coming soon)
+            </div>
+          </div>
+          <div>
+            <hr>
+            <div class="programtitle"><strong>HERON.8XP 1.0.0</strong></div>
+            <div class="programdescription">This program is a wrapper for Heron's Formula. <span class="warning">(Warning: It has comically bad UI because it was the first program I ever made, all the way back in 2016.)</span> <br> Written in TI-BASIC.
+            </div>
+            <div class="programdl">
+              <a href="./ce/HERON.8xp">TI84+CE/TI84+CSE</a> • TI84/TI84+ (coming soon)
+            </div>
+          </div>
+        </div>
+        <p id="trace">this is the default trace which likely means you have javascript disabled which is very sad</p>
       </div>
+      <script type="text/javascript">
+        function getTrace(url){
+          var t = ["home"];
+          var m = (url || location.href).split('/');
+          var q = false;
+          for(var i = 0; i < m.length; i++){
+            if(q && m[i] != "") t.push(m[i]);
+            if(m[i] == 'gabrieltardy.github.io') q = true;
+          }
+          return t.join(' / ');
+        }
+        document.getElementById('trace').textContent = getTrace();
+      </script>
   </body>
 </html>
