@@ -30,12 +30,8 @@
         font-size: 3em;
         padding-bottom: 0.5em;
       }
-      a{
+      #nav a, #nav{
         color: white;
-      }
-      #trace{
-        padding-top: 3em;
-        font-size: 0.6em;
       }
     </style>
   </head>
@@ -45,20 +41,8 @@
         <nav id="nav"><a href="./ti84">ti-84 and ti-84 ce</a> • <a href="./p">proofs of concepts</a> • <a href="./d">projects and demos</a> • <a href="./i?sort=latest">infrequent musings</a>
         </nav>
         <br>
-        <p id="paragraph">this page is in beta, stop looking at it if it annoys you<br><br>voilà la page d'acceuil / here is the home page</p>
+        <p id="paragraph">voilà la page d'acceuil / here is the home page</p>
         <p id="paragraph2">this div is centered therefore you should hire me</p>
-        <p id="trace">home</p>
       </div>
-      <script type="text/javascript">
-        var trace = ["home"];
-        var m = location.href.split('/');
-        for(var i = 0; i < m.length; i++){
-          if(m[i] == 'gabrieltardy.github.io') break;
-          m.splice(i, 1);
-        }
-
-        console.log(m);
-        console.log(m.concat())
-      </script>
   </body>
 </html>
