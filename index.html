@@ -52,13 +52,15 @@
       <script type="text/javascript">
         var trace = ["home"];
         var m = location.href.split('/');
+        var isaddress = false;
         for(var i = 0; i < m.length; i++){
-          if(m[i] == 'gabrieltardy.github.io') break;
-          m.splice(i, 1);
+          if(m[i] == 'gabrieltardy.github.io') isaddress = true;
+
+          if(!isaddress && m[i] == "") m.splice(i, 1);
         }
 
         console.log(m);
-        console.log(m.concat())
+        console.log(trace.concat(m))
       </script>
   </body>
 </html>
